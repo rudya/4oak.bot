@@ -1,0 +1,19 @@
+{
+  "name": "4oak-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rudy Aquino",
+  "license": "ISC",
+  "dependencies": {
+    "@discordjs/opus": "^0.9.0",
+    "@discordjs/voice": "^0.14.0",
+    "discord.js": "^14.7.1",
+    "sodium": "^3.0.2",
+    "youtube-dl-exec": "^2.4.0",
+    "ytdl-core": "^4.11.2"
+  }
+}
