@@ -48,8 +48,13 @@ module.exports = class Player {
             newNetworking?.on('stateChange', networkStateChangeHandler);
         })
     }
-    pause(){
-        console.log('player class: pause');
+    pause(state){
+        if(state === 'on') {
+            this.audioPlayer?.pause();
+        } else {
+            this.audioPlayer?.unpause();
+        }
+        console.log('player class: pause ' + state);
     }
     play(channel){
         if(!channel) {
@@ -65,6 +70,7 @@ module.exports = class Player {
                     noSubscriber: NoSubscriberBehavior.Pause,
                 },
             });
+            this.connection.subscribe(this.audioPlayer);
             this.audioPlayer.on('error', error => {
                 console.error(`Error: ${error.message} with resource ${error.resource.metadata.title}`);
             });
@@ -84,6 +90,7 @@ module.exports = class Player {
                 console.log('The audio player has started autopuased!');
             });
         }
+
         const stream = ytdl("https://www.youtube.com/watch?v=dq_SDNtWHDY", {
             filter: "audioonly",
             highWaterMark: 1<<62,
@@ -92,13 +99,10 @@ module.exports = class Player {
             dlChunkSize: 0,
         }).on('info', (info) => {
             console.log('playing ' + info.player_response.videoDetails.title);
-        }).on('progress', (progress, downloaded, total) => {
-            // console.log(downloaded + ' / ' + total)
         })
         const resource = createAudioResource(stream, {
             inputType: StreamType.Arbitrary,
         });
         this.audioPlayer.play(resource);
-        this.connection.subscribe(this.audioPlayer);
     }
 }

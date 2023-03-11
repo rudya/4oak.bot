@@ -5,7 +5,7 @@ module.exports = {
 		.setName('play')
 		.setDescription('Play music from a given YT url')
         .addStringOption(option =>
-            option.setName('input')
+            option.setName('youtube_link')
                 .setDescription('youtube link')
                 .setRequired(true)),
 	async execute(interaction, player) {
