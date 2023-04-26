@@ -11,7 +11,7 @@ module.exports = {
 	async execute(interaction, player) {
         const input = interaction.options.data[0].value;
         const voiceChannel = interaction.member.voice.channel;
-        player.play(voiceChannel);
+        player.play(input, voiceChannel);
 		await interaction.reply('playing song: ' + input);
 	},
 };

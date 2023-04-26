@@ -56,7 +56,7 @@ module.exports = class Player {
         }
         console.log('player class: pause ' + state);
     }
-    play(channel){
+    play(input, channel){
         if(!channel) {
             console.log('join a voice channel!');
             return;
@@ -91,7 +91,7 @@ module.exports = class Player {
             });
         }
 
-        const stream = ytdl("https://www.youtube.com/watch?v=dq_SDNtWHDY", {
+        const stream = ytdl(input, {
             filter: "audioonly",
             highWaterMark: 1<<62,
             liveBuffer: 1 << 62,
